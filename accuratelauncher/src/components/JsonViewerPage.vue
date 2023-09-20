@@ -13,8 +13,12 @@ v-card.rounded-lg.mx-0
         color="success"
         density="compact"
         v-show="dismissCountDown > 0")
-    v-row.left-align
 
+    v-row.left-align.pt-2
+      v-icon(:icon="validationIcon" :color="validationStatus")
+      span.pl-1 {{ validationMessage }}
+
+    v-row.left-align
       json-viewer(:value="jsonForm"
       expanded="true"
       expand-depth="5"
@@ -39,8 +43,31 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["jsonForm"]),
-  } ,
+    ...mapGetters(["jsonForm", "isValid"]),
+    validationStatus(){
+      // try to validate all parts
+      if (this.isValid){
+        return "green"
+      } else {
+        return "red"
+      }
+
+    },
+    validationIcon(){
+      if (this.isValid){
+        return "fa-regular fa-circle-check"
+      } else {
+        return "fa-solid fa-circle-xmark"
+      }
+    },
+    validationMessage() {
+      if (this.isValid) {
+        return "Form is complete"
+      } else {
+        return "Invalid"
+      }
+    },
+  },
   methods: {
     refresh(){
       console.log(this.$store.getters["jsonForm"])

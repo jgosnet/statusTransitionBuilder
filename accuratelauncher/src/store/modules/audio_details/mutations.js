@@ -3,10 +3,20 @@ export default {
     state.audioItems.push(audioItem)
   },
   addNewAudioItem(state){
-    state.audioItems.push({
+    state.audioItems[state.audioIndex] = {
       name: "new",
       label: "",
-      asset_name: null
-    })
-  }
+      index: state.audioIndex,
+      includeAssetName: false,
+      assetName: null
+    };
+    state.audioIndex += 1;
+  },
+  deleteItem(state, audioItem){
+    console.log(`trying to delete: ${audioItem.index}`)
+    delete state.audioItems[audioItem.index];
+    console.log(state.audioItems)
+
+  },
+
 }

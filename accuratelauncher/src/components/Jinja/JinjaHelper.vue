@@ -23,7 +23,7 @@ export default {
   data: function(){
     return {
       isExpanded: false,
-      jinjaExample1: "{{ DYNAMIC_PRESET_DATA[\" \"] | default(\"\") }}"
+      jinjaExample1: "{{ DYNAMIC_PRESET_DATA['FIELD'] | default('') }}"
     }
   }
 }

@@ -1,6 +1,6 @@
 <template lang="pug">
 fieldset.pa-1
-  legend.left-align.pl-2.font-weight-bold
+  legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
     span Audio details
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
@@ -10,6 +10,7 @@ fieldset.pa-1
       @click="isExpanded = !isExpanded")
   div(v-show="!isExpanded").py-1
   div(v-show="isExpanded" )
+    span(v-show="Object.keys(audioItems).length === 0" ) No audio tracks specified
     v-row
       v-col(cols="12")
         AudioDetailsItem(v-for='item in audioItems'
@@ -17,9 +18,8 @@ fieldset.pa-1
             :audio-item="item" )
     v-row
       v-col(cols="12")
-        v-btn(icon="fa-solid fa-plus"
-        @click="addAudioItem")
-    | {{ audioItems }}
+        v-btn(prepend-icon="fa-solid fa-plus"
+        @click="addAudioItem" elevation="2" ) Add audio track
 </template>
 
 <script>

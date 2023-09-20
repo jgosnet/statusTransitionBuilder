@@ -4,6 +4,28 @@ export default {
   },
   jsonForm(state){
     console.log("getting config from audio details")
-    return state.audioItems
+    let res = {}
+
+    for (const index in state.audioItems){
+      const item = state.audioItems[index]
+      let resData = {
+        label: item.label,
+      }
+
+      if (item.enabled !== undefined){
+        resData['enabled'] = item.enabled
+      }
+
+      if (item.includeAssetName === true){
+        resData['asset_name'] = item.assetName
+      }
+
+      if (item.includeLanguage === true){
+        resData['language'] = item.language
+      }
+
+      res[item.name] = resData
+    }
+    return res
   }
 }

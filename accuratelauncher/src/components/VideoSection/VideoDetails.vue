@@ -1,6 +1,6 @@
 <template lang="pug">
 fieldset.pa-1
-  legend.left-align.pl-2.font-weight-bold
+  legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
     span Video details
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
@@ -13,13 +13,12 @@ fieldset.pa-1
     v-row
       v-col(:cols="labelSize")
         v-text-field(v-model="videoLabel"
-          label="Video label" )
+          label="Video label" density="compact" hide-details)
       v-col(:cols="checkboxcols")
-        v-checkbox(:label="checkboxName" v-model="includeAssetName")
+        v-checkbox(:label="checkboxName" v-model="includeAssetName" density="compact" hide-details)
       v-col(v-show="includeAssetName" cols="5")
-        v-text-field(v-model="videoAssetName"
-          label="Asset Name" )
-      v-col(cols="1")
+        v-text-field(v-model="videoAssetName" hide-details
+          label="Asset Name" density="compact" )
 
 
 </template>

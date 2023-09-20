@@ -1,3 +1,4 @@
 export default {
-  audioItems: [],
+  audioItems: {},
+  audioIndex: 0
 }
