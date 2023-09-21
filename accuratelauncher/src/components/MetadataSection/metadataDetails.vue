@@ -1,7 +1,7 @@
 <template lang="pug">
 fieldset.pa-1
   legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
-    span TBMD details
+    span Metadata
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
         v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
@@ -10,24 +10,24 @@ fieldset.pa-1
       @click="isExpanded = !isExpanded")
   div(v-show="!isExpanded").py-1
   div(v-show="isExpanded" )
-    span(v-show="Object.keys(tbmdItems).length === 0" ) No TBMD specified
+    span(v-show="Object.keys(metadata).length === 0" ) No Metadata specified
     v-row
       v-col(cols="12")
-        TbmdDetailsItem(v-for='item in tbmdItems'
-            :key='item.name'
+        MetadataDetailsItem(v-for='item in metadata'
+            :key='item.index'
             :item="item" )
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addTbmdItem" elevation="2" ) Add TBMD file
+        @click="addItem" elevation="2" ) Add Metadata field
 </template>
 
 <script>
-import TbmdDetailsItem from "@/components/TbmdSection/TbmdDetailsItem";
+import MetadataDetailsItem from "@/components/MetadataSection/metadataDetailsItem";
 
 export default {
-  name: "TbmdDetails",
-  components: {TbmdDetailsItem},
+  name: "metadataDetails",
+  components: {MetadataDetailsItem},
   computed: {
     expansionIcon(){
       if (this.isExpanded === false){
@@ -36,18 +36,18 @@ export default {
         return "fa-solid fa-caret-right"
       }
     },
-    tbmdItems: {
+    metadata: {
       get() {
-        return this.$store.getters["tbmdDetails/tbmdItems"]
+        return this.$store.getters["metadata/metadata"]
       },
       set(value) {
-        this.$store.dispatch('tbmdDetails/updateTbmdItems', value)
+        this.$store.dispatch('metadata/updateMetadata', value)
       }
     },
   },
   methods: {
-    addTbmdItem(){
-      this.$store.dispatch("tbmdDetails/addNewTbmdItem")
+    addItem(){
+      this.$store.dispatch("metadata/addNewItem")
     },
   },
   data: function(){

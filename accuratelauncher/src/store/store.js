@@ -7,6 +7,7 @@ import captionDetails from "@/store/modules/captionDetails";
 import tbmdDetails from "@/store/modules/tbmdDetails";
 import spritemapDetails from "@/store/modules/spritemapDetails";
 import generalDetails from "@/store/modules/generalDetails";
+import metadata from "@/store/modules/metadata";
 import snackbar from "@/store/modules/snackbar";
 
 export const store = createStore({
@@ -23,5 +24,6 @@ export const store = createStore({
     tbmdDetails,
     spritemapDetails,
     generalDetails,
+    metadata,
   }
 })

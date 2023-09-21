@@ -8,6 +8,7 @@ v-card.mx-0
     CaptionDetails.my-3
     TbmdDetails.my-3
     SpritemapDetails.my-3
+    MetadataDetails.my-3
 </template>
 
 <script>
@@ -17,6 +18,7 @@ import CaptionDetails from "@/components/CaptionSection/CaptionDetails";
 import TbmdDetails from "@/components/TbmdSection/TbmdDetails";
 import SpritemapDetails from "@/components/SpritemapSection/SpritemapDetails";
 import GeneralDetails from "@/components/GeneralConfigSection/GeneralDetails";
+import MetadataDetails from "@/components/MetadataSection/metadataDetails";
 
 export default {
   name: "ConfigurationBase",
@@ -26,7 +28,8 @@ export default {
     CaptionDetails,
     AudioDetails,
     VideoDetails,
-    TbmdDetails
+    TbmdDetails,
+    MetadataDetails,
   }
 }
 </script>

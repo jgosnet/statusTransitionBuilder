@@ -20,8 +20,8 @@ v-card.rounded-lg.mx-0
 
     v-row.left-align
       json-viewer(:value="jsonForm"
-      expanded="true"
-      expand-depth="5"
+      expanded=true
+      :expand-depth="expandDepth"
       theme="my-awesome-json-theme")
     //v-btn(@click="refresh") refresh
 
@@ -37,6 +37,7 @@ export default {
   name: "JsonViewerPage",
   data: function() {
     return {
+      expandDepth: 5,
       dismissSecs: 5,
       dismissCountDown: 0,
       stringOutput: "test123",

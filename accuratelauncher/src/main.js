@@ -43,10 +43,12 @@ const vuetify = createVuetify({
 
 import Clipboard from 'v-clipboard'
 import JsonViewer from 'vue-json-viewer'
+import {router} from "@/router"
 
 export const Vue = createApp(App)
   .use(vuetify)
   .use(Clipboard)
+    .use(router)
   .use(JsonViewer)
   .use(store)
   .use(VueCookies)

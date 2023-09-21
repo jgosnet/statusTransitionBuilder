@@ -8,6 +8,8 @@ export default {
     const audioDetails = rootGetters["audioDetails/jsonForm"];
     const captionDetails = rootGetters["captionDetails/jsonForm"];
     const tbmdDetails = rootGetters["tbmdDetails/jsonForm"];
+    const spritemapDetails = rootGetters["spritemapDetails/jsonForm"];
+    const metadataDetails = rootGetters["metadata/jsonForm"];
 
     let res = {}
     res['ignore_missing_labels'] = rootGetters['generalDetails/ignoreMissingFiles']
@@ -18,6 +20,11 @@ export default {
     res['audio_details'] = audioDetails
     res['caption_details'] = captionDetails
     res['tbmd_details'] = tbmdDetails
+    res['spritemap_details'] = spritemapDetails
+    if (metadataDetails !== null && metadataDetails !== undefined){
+      res['metadata'] = metadataDetails
+    }
+
     return res
   },
   // eslint-disable-next-line no-unused-vars

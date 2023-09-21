@@ -7,6 +7,23 @@ export default {
   },
   jsonForm(state){
     console.log("getting config from spritemapItems details")
-    return state.spritemapItems
+    let res = {}
+
+    if (state.useSpritemap === true){
+      for (const index in state.spritemapItems){
+        const item = state.spritemapItems[index]
+        let resData = {
+          label: item.label,
+        }
+
+        if (item.includeAssetName === true){
+          resData['asset_name'] = item.assetName
+        }
+
+        res[item.name] = resData
+      }
+    }
+
+    return res
   }
 }

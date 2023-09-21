@@ -3,13 +3,27 @@ v-card(color="transparent" elevation="0" )
   SnackBarPopup
   v-layout
     v-app-bar(color="surface-variant" prominent density="compact" )
+      v-menu(transition="slide-y-transition")
+        template(v-slot:activator="{ props }")
+          v-btn(v-bind="props" icon="fas fa-bars")
+        v-list(density="compact" nav)
+          v-list-item(v-for='item in menuItems'
+            :key='item.title'
+            :to='item.path'
+            :prepend-icon="item.icon"
+            exact-active-class='grey' large)
+            v-list-item-title.item-title {{item.title}}
 
       v-toolbar-title
         v-icon fa-brands fa-youtube
         span.pl-3 Accurate launcher
-      //v-spacer
-      i.pr-4 updated on: 9/14/2023
-  TheAccurateLauncherHome
+        //v-spacer
+      i.pr-4 updated on: 9/20/2023
+
+  router-view(v-slot="{ Component }")
+    transition(name="fade" mode="out-in" )
+      keep-alive
+        Component(:is="Component")
 
 
 </template>
@@ -19,17 +33,19 @@ v-card(color="transparent" elevation="0" )
 import './assets/main.css'
 import SnackBarPopup from "@/components/utils/SnackBarPopup";
 import {mapGetters} from "vuex";
-import TheAccurateLauncherHome from "@/components/TheAccurateLauncherHome"
+import DpdBuilderPage from "@/components/DpdBuilderPage"
 
 export default {
   name: 'App',
   components: {
     SnackBarPopup,
-    TheAccurateLauncherHome
+    DpdBuilderPage
   },
   data() {
     return {
       menuItems: [
+        {title: 'DPD input', path: '/dpd', icon: 'fa-solid fa-indent'},
+        {title: 'Preset builder', path: '/preset', icon: 'fa-solid fa-gears'},
       ]
     }
   },
