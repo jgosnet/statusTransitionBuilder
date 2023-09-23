@@ -9,6 +9,7 @@ import spritemapDetails from "@/store/modules/spritemapDetails";
 import generalDetails from "@/store/modules/generalDetails";
 import metadata from "@/store/modules/metadata";
 import snackbar from "@/store/modules/snackbar";
+import woPreset from "@/store/modules/woPreset";
 
 export const store = createStore({
   state: {},
@@ -25,5 +26,6 @@ export const store = createStore({
     spritemapDetails,
     generalDetails,
     metadata,
+    woPreset,
   }
 })

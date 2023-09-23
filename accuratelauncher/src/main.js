@@ -45,11 +45,21 @@ import Clipboard from 'v-clipboard'
 import JsonViewer from 'vue-json-viewer'
 import {router} from "@/router"
 
+import { basicSetup } from 'codemirror'
+import VueCodemirror from 'vue-codemirror'
+
 export const Vue = createApp(App)
   .use(vuetify)
   .use(Clipboard)
     .use(router)
   .use(JsonViewer)
+  .use(VueCodemirror, {
+    autofocus: true,
+    disabled: false,
+    indentWithTab: true,
+    tabSize: 2,
+    extensions: [basicSetup],
+  })
   .use(store)
   .use(VueCookies)
   .use(VueDiff, {
