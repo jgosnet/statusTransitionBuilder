@@ -5,7 +5,7 @@ v-container(fluid).border-solid
       ConfigurationBase
     v-spacer
     v-col(cols="4")
-      TheImporter.mb-2
+      //TheImporter.mb-2
       JinjaHelper.mb-2
       JsonViewerPage.mb-2
 </template>

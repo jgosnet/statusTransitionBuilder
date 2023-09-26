@@ -12,13 +12,13 @@ v-card.mx-0
 </template>
 
 <script>
-import VideoDetails from "@/components/VideoSection/VideoDetails";
-import AudioDetails from "@/components/AudioSection/AudioDetails";
-import CaptionDetails from "@/components/CaptionSection/CaptionDetails";
-import TbmdDetails from "@/components/TbmdSection/TbmdDetails";
-import SpritemapDetails from "@/components/SpritemapSection/SpritemapDetails";
-import GeneralDetails from "@/components/GeneralConfigSection/GeneralDetails";
-import MetadataDetails from "@/components/MetadataSection/metadataDetails";
+import VideoDetails from "@/components/DPD/VideoSection/VideoDetails";
+import AudioDetails from "@/components/DPD/AudioSection/AudioDetails";
+import CaptionDetails from "@/components/DPD/CaptionSection/CaptionDetails";
+import TbmdDetails from "@/components/DPD/TbmdSection/TbmdDetails";
+import SpritemapDetails from "@/components/DPD/SpritemapSection/SpritemapDetails";
+import GeneralDetails from "@/components/DPD/GeneralConfigSection/GeneralDetails";
+import MetadataDetails from "@/components/DPD/MetadataSection/metadataDetails";
 
 export default {
   name: "ConfigurationBase",

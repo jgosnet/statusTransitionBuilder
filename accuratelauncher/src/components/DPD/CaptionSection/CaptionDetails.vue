@@ -1,7 +1,7 @@
 <template lang="pug">
 fieldset.pa-1
   legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
-    span Metadata
+    span Caption details
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
         v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
@@ -10,24 +10,23 @@ fieldset.pa-1
       @click="isExpanded = !isExpanded")
   div(v-show="!isExpanded").py-1
   div(v-show="isExpanded" )
-    span(v-show="Object.keys(metadata).length === 0" ) No Metadata specified
+    span(v-show="Object.keys(captionItems).length === 0" ) No caption tracks specified
     v-row
       v-col(cols="12")
-        MetadataDetailsItem(v-for='item in metadata'
-            :key='item.index'
-            :item="item" )
+        CaptionDetailsItem(v-for='item in captionItems'
+            :key='captionItems.name'
+            :caption-item="item" )
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addItem" elevation="2" ) Add Metadata field
+        @click="addCaptionItem" elevation="2" ) Add caption track
 </template>
 
 <script>
-import MetadataDetailsItem from "@/components/MetadataSection/metadataDetailsItem";
-
+import CaptionDetailsItem from "@/components/DPD/CaptionSection/CaptionDetailsItem";
 export default {
-  name: "metadataDetails",
-  components: {MetadataDetailsItem},
+  name: "CaptionDetails",
+  components: {CaptionDetailsItem},
   computed: {
     expansionIcon(){
       if (this.isExpanded === false){
@@ -36,18 +35,18 @@ export default {
         return "fa-solid fa-caret-right"
       }
     },
-    metadata: {
+    captionItems: {
       get() {
-        return this.$store.getters["metadata/metadata"]
+        return this.$store.getters["captionDetails/captionItems"]
       },
       set(value) {
-        this.$store.dispatch('metadata/updateMetadata', value)
+        this.$store.dispatch('captionDetails/updateCaptionItems', value)
       }
     },
   },
   methods: {
-    addItem(){
-      this.$store.dispatch("metadata/addNewItem")
+    addCaptionItem(){
+      this.$store.dispatch("captionDetails/addNewCaptionItem")
     },
   },
   data: function(){

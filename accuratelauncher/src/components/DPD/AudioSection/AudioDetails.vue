@@ -1,7 +1,7 @@
 <template lang="pug">
 fieldset.pa-1
   legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
-    span TBMD details
+    span Audio details
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
         v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
@@ -10,24 +10,23 @@ fieldset.pa-1
       @click="isExpanded = !isExpanded")
   div(v-show="!isExpanded").py-1
   div(v-show="isExpanded" )
-    span(v-show="Object.keys(tbmdItems).length === 0" ) No TBMD specified
+    span(v-show="Object.keys(audioItems).length === 0" ) No audio tracks specified
     v-row
       v-col(cols="12")
-        TbmdDetailsItem(v-for='item in tbmdItems'
-            :key='item.name'
-            :item="item" )
+        AudioDetailsItem(v-for='item in audioItems'
+            :key='audioItems.name'
+            :audio-item="item" )
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addTbmdItem" elevation="2" ) Add TBMD file
+        @click="addAudioItem" elevation="2" ) Add audio track
 </template>
 
 <script>
-import TbmdDetailsItem from "@/components/TbmdSection/TbmdDetailsItem";
-
+import AudioDetailsItem from "@/components/DPD/AudioSection/AudioDetailsItem";
 export default {
-  name: "TbmdDetails",
-  components: {TbmdDetailsItem},
+  name: "AudioDetails",
+  components: {AudioDetailsItem},
   computed: {
     expansionIcon(){
       if (this.isExpanded === false){
@@ -36,18 +35,18 @@ export default {
         return "fa-solid fa-caret-right"
       }
     },
-    tbmdItems: {
+    audioItems: {
       get() {
-        return this.$store.getters["tbmdDetails/tbmdItems"]
+        return this.$store.getters["audioDetails/audioItems"]
       },
       set(value) {
-        this.$store.dispatch('tbmdDetails/updateTbmdItems', value)
+        this.$store.dispatch('audioDetails/updateAudioItems', value)
       }
     },
   },
   methods: {
-    addTbmdItem(){
-      this.$store.dispatch("tbmdDetails/addNewTbmdItem")
+    addAudioItem(){
+      this.$store.dispatch("audioDetails/addNewAudioItem")
     },
   },
   data: function(){

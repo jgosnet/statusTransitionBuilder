@@ -1,7 +1,7 @@
 <template lang="pug">
 fieldset.pa-1
   legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
-    span Spritemap details
+    span TBMD details
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
         v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
@@ -10,25 +10,24 @@ fieldset.pa-1
       @click="isExpanded = !isExpanded")
   div(v-show="!isExpanded").py-1
   div(v-show="isExpanded" )
-    span(v-show="Object.keys(items).length === 0" ) No Spritemap specified
-    v-row.mb-0.pb-0
-      v-col(cols="12").mb-0.pb-0
-        v-checkbox(v-model="useSpritemap" hide-details
-          label="Use Spritemap ?"
-          density="compact" )
-    v-row(v-show="useSpritemap" )
+    span(v-show="Object.keys(tbmdItems).length === 0" ) No TBMD specified
+    v-row
       v-col(cols="12")
-        SpritemapDetailsItem(v-for='item in items'
-            :key='items.name'
+        TbmdDetailsItem(v-for='item in tbmdItems'
+            :key='item.name'
             :item="item" )
+    v-row
+      v-col(cols="12")
+        v-btn(prepend-icon="fa-solid fa-plus"
+        @click="addTbmdItem" elevation="2" ) Add TBMD file
 </template>
 
 <script>
-import SpritemapDetailsItem from "@/components/SpritemapSection/SpritemapDetailsItem";
+import TbmdDetailsItem from "@/components/DPD/TbmdSection/TbmdDetailsItem";
 
 export default {
-  name: "SpritemapDetails",
-  components: {SpritemapDetailsItem},
+  name: "TbmdDetails",
+  components: {TbmdDetailsItem},
   computed: {
     expansionIcon(){
       if (this.isExpanded === false){
@@ -37,28 +36,24 @@ export default {
         return "fa-solid fa-caret-right"
       }
     },
-    items: {
+    tbmdItems: {
       get() {
-        return this.$store.getters["spritemapDetails/spritemapItems"]
-      }
-    },
-    useSpritemap: {
-      get() {
-        return this.$store.getters["spritemapDetails/useSpritemap"]
+        return this.$store.getters["tbmdDetails/tbmdItems"]
       },
       set(value) {
-        this.$store.dispatch('spritemapDetails/updateUseSpritemap', value)
+        this.$store.dispatch('tbmdDetails/updateTbmdItems', value)
       }
     },
   },
   methods: {
+    addTbmdItem(){
+      this.$store.dispatch("tbmdDetails/addNewTbmdItem")
+    },
   },
   data: function(){
     return {
       isExpanded: true,
     }
-  },
-  mounted() {
   }
 }
 </script>
