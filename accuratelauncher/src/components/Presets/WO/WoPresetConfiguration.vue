@@ -12,7 +12,7 @@ v-card.mx-0
 <script>
 import AssetStatus from "@/components/Presets/WO/AssetStatus";
 import MetadataFields from "@/components/Presets/WO/MetadataFields";
-import MetadataView from "@/components/Presets/WO/MetadataView";
+import MetadataView from "@/components/Presets/WO/MetadataViews/MetadataView";
 import OutputSpecs from "@/components/Presets/WO/OutputSpecs";
 
 export default {

@@ -31,16 +31,4 @@ export default {
   isValid(state, getters, rootState, rootGetters){
     return false
   },
-  // eslint-disable-next-line no-unused-vars
-  woProviderData(state, getters, rootState, rootGetters){
-    console.log("display wo provider data")
-    let res = {};
-    return JSON.stringify(res)
-  },
-    // eslint-disable-next-line no-unused-vars
-  woRallyConfig(state, getters, rootState, rootGetters){
-    console.log("display wo provider data")
-    let res = {};
-    return JSON.stringify(res)
-  },
 }

@@ -12,26 +12,34 @@ fieldset.pa-1.mb-5
   div(v-show="isExpanded" )
     v-row
       v-col(cols="12")
-
+        OutputSpecsItem(v-for='item in outputSpecs'
+            :key='item.index'
+            :item="item" )
     v-row
       v-col(cols="12")
+        v-btn(prepend-icon="fa-solid fa-plus"
+        @click="addItem" elevation="2" variant="outlined" ) Add New OutputSpec
+
+        v-btn.float-right(prepend-icon="fa-solid fa-arrows-rotate"
+        @click="resetOutputSpecs" elevation="4" variant="outlined" ) Reset outputSpecs
 
 
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import OutputSpecsItem from "@/components/Presets/WO/OutputSpecsItem";
 
 export default {
   name: "OutputSpecs",
-  components: {},
+  components: {OutputSpecsItem},
   data(){
     return {
-      isExpanded: false,
+      isExpanded: true,
     }
   },
   computed: {
-    ...mapGetters('woPreset', ['outputStatuses']),
+    ...mapGetters('woPreset', ['outputSpecs']),
     expansionIcon() {
       if (this.isExpanded === false) {
         return "fa-solid fa-caret-down"
@@ -42,8 +50,14 @@ export default {
   },
   methods: {
     addItem(){
-      this.$store.dispatch("woPreset/addOutputStatus")
+      this.$store.dispatch("woPreset/addOutputSpec")
+    },
+        resetOutputSpecs(){
+      this.$store.dispatch("woPreset/resetOutputSpecs")
     }
+  },
+  mounted() {
+    this.$store.dispatch("woPreset/resetOutputSpecs")
   }
 }
 </script>
@@ -52,4 +66,8 @@ export default {
 fieldset{
   border-style: dashed;
 }
+legend{
+  font-size: large;
+}
+
 </style>

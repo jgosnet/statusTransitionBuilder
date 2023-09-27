@@ -9,25 +9,31 @@ fieldset.pa-1.mb-5
     v-icon(:icon="expansionIcon" size="x-large"
       @click="isExpanded = !isExpanded")
   div(v-show="!isExpanded").py-1
+
   div(v-show="isExpanded" )
     v-row
       v-col(cols="12")
-        | test
+        MetadataViewItem.noborder(v-for='item in metadataViewAsset'
+            :key='item.name'
+            :item="item" )
 
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import MetadataViewItem from "@/components/Presets/WO/MetadataViews/MetadataViewItem";
 
 export default {
   name: "MetadataView",
+  components: {MetadataViewItem},
   data(){
     return {
+      tab: "asset",
       isExpanded: true,
     }
   },
   computed: {
-    ...mapGetters('woPreset', ['metadataFields']),
+    ...mapGetters('woPreset', ['metadataViewAsset']),
     expansionIcon() {
       if (this.isExpanded === false) {
         return "fa-solid fa-caret-down"
@@ -45,5 +51,10 @@ export default {
 </script>
 
 <style scoped>
-
+legend{
+  font-size: large;
+}
+.noborder{
+  border-style: none;
+}
 </style>

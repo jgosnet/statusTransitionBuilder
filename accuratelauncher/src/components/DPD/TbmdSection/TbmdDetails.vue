@@ -19,7 +19,7 @@ fieldset.pa-1
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addTbmdItem" elevation="2" ) Add TBMD file
+        @click="addTbmdItem" elevation="2" variant="outlined" ) Add TBMD file
 </template>
 
 <script>

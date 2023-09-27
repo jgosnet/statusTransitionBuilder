@@ -14,4 +14,13 @@ export default {
   deleteMetadataField(context, item){
     context.commit('deleteMetadataField', item)
   },
+  addOutputSpec(context){
+    context.commit('addOutputSpec')
+  },
+  deleteOutputSpec(context, item){
+    context.commit('deleteOutputSpec', item)
+  },
+  resetOutputSpecs(context, item){
+    context.commit('resetOutputSpecs', item)
+  },
 }

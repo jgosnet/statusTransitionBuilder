@@ -19,7 +19,7 @@ fieldset.pa-1
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addAudioItem" elevation="2" ) Add audio track
+        @click="addAudioItem" elevation="2" variant="outlined" ) Add audio track
 </template>
 
 <script>

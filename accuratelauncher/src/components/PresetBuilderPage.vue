@@ -4,7 +4,7 @@ v-container(fluid).border-solid
     v-col(cols="6")
       WoPresetConfiguration
     v-spacer
-    v-col(cols="6").light-border.py-0.pl-0
+    v-col(cols="6").py-0.pl-0
       v-tabs(v-model="selectedTab" selected-class="selected-tab").my-0.py-0
         v-tab(value="providerData") Provider Data
         v-tab(value="rallyConfig" ) Rally Config
@@ -31,7 +31,7 @@ export default {
   },
   data(){
     return {
-      selectedTab: null,
+      selectedTab: 'providerData',
       expandDepth: 5,
       stringOutput: "test123",
       lang: json(),

@@ -1,25 +1,28 @@
 <template lang="pug">
 fieldset.pa-1
-  legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
+  //legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
+  legend.left-align.pl-2.font-weight-bold
     span Metadata
     v-tooltip(text="123" )
       template(v-slot:activator="{ props }")
         v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
-  div(id="expand")
-    v-icon(:icon="expansionIcon" size="x-large"
-      @click="isExpanded = !isExpanded")
-  div(v-show="!isExpanded").py-1
-  div(v-show="isExpanded" )
-    span(v-show="Object.keys(metadata).length === 0" ) No Metadata specified
-    v-row
-      v-col(cols="12")
-        MetadataDetailsItem(v-for='item in metadata'
-            :key='item.index'
-            :item="item" )
-    v-row
-      v-col(cols="12")
-        v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addItem" elevation="2" ) Add Metadata field
+  //div(id="expand")
+  //  v-icon(:icon="expansionIcon" size="x-large"
+  //    @click="isExpanded = !isExpanded")
+  //div(v-show="!isExpanded").py-1
+  //div(v-show="isExpanded" )
+    //span(v-show="Object.keys(metadata).length === 0" ) No Metadata specified
+    //v-row
+    //  v-col(cols="12")
+    //    MetadataDetailsItem(v-for='item in metadata'
+    //        :key='item.index'
+    //        :item="item" )
+    //v-row
+    //  v-col(cols="12")
+    //    v-btn(prepend-icon="fa-solid fa-plus"
+    //    @click="addItem" elevation="2" variant="outlined" ) Add Metadata field
+  div()
+    | Metadata fields must be added in the `Preset builder` page.
 </template>
 
 <script>

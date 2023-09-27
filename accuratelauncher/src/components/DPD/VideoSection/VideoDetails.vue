@@ -92,5 +92,7 @@ export default {
 </script>
 
 <style scoped>
-
+legend{
+  font-size: large;
+}
 </style>

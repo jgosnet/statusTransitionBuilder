@@ -19,7 +19,7 @@ fieldset.pa-1
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addCaptionItem" elevation="2" ) Add caption track
+        @click="addCaptionItem" elevation="2" variant="outlined" ) Add caption track
 </template>
 
 <script>

@@ -19,7 +19,7 @@ fieldset.pa-1.mb-5
     v-row
       v-col(cols="12")
         v-btn(prepend-icon="fa-solid fa-plus"
-        @click="addItem" elevation="2") Add New Status
+        @click="addItem" elevation="2" variant="outlined" ) Add New Status
 
 </template>
 
@@ -56,5 +56,9 @@ export default {
 <style scoped>
 fieldset{
   border-style: dashed;
+}
+
+legend{
+  font-size: large;
 }
 </style>

@@ -18,7 +18,7 @@ export default {
       console.log(state.outputStatuses[index])
     }
   },
-    addMetadataField(state){
+  addMetadataField(state){
     state.metadataFields[state.metadataIndex] = {
       key: 'new',
       index: state.metadataIndex,
@@ -33,5 +33,27 @@ export default {
     for (const index in state.metadataFields){
       console.log(state.metadataFields[index])
     }
+  },
+  addOutputSpec(state){
+    state.outputSpecs[state.outputSpecsIndex] = {
+      index: state.outputSpecsIndex,
+      regexp: "",
+      label: "",
+      location: "",
+      name: "<assetName>"
+    };
+    state.outputSpecsIndex += 1;
+  },
+  deleteOutputSpec(state, item){
+    console.log(`trying to delete: ${item.index}`)
+    console.log(item)
+    delete state.outputSpecs[item.index];
+    for (const index in state.outputSpecs){
+      console.log(state.outputSpecs[index])
+    }
+  },
+  resetOutputSpecs(state){
+    state.outputSpecs = {...state.defaultOutputSpecs};
+    state.outputSpecsIndex = 0;
   },
 }

@@ -20,6 +20,15 @@ v-card(color="transparent" elevation="0" )
         //v-spacer
       i.pr-4 updated on: 9/20/2023
 
+    //v-navigation-drawer(permanent :width="190")
+    //  v-list(density="compact" nav)
+    //      v-list-item(v-for='item in menuItems'
+    //        :key='item.title'
+    //        :to='item.path'
+    //        :prepend-icon="item.icon"
+    //        exact-active-class='grey' large)
+    //        v-list-item-title.item-title {{item.title}}
+
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in" )
       keep-alive
@@ -123,6 +132,11 @@ input[type=checkbox]{
 
 fieldset{
 min-height: 20px;
+  border-radius: 10px;
+}
+
+legend{
+  font-size: large;
 }
 
 #expand{

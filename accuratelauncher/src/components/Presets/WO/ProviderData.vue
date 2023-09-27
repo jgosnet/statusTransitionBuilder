@@ -36,7 +36,7 @@ export default {
     return {
       lang: json(),
       linter: jsonParseLinter(),
-            dismissSecs: 5,
+      dismissSecs: 5,
       dismissCountDown: 0,
     }
   },

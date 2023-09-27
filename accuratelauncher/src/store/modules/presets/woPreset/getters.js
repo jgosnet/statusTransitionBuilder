@@ -49,7 +49,11 @@ export default {
   // eslint-disable-next-line no-unused-vars
   woRallyConfig(state, getters, rootState, rootGetters){
     console.log("display wo rallyconfig")
-    let res = {};
+    let res = {
+      PresetName: "builder_wo",
+      inputSpec: "{{DYNAMIC_PRESET_DATA['input_specs'] | tojson}}",
+      outputSpec: getters['formattedOutputSpecs']
+    };
     return JSON.stringify(res, null, 4)
   },
   outputStatuses(state){
@@ -100,5 +104,23 @@ export default {
   },
   possibleStoredTypes(state){
     return state.possibleStoredTypes
+  },
+  outputSpecs(state){
+    return state.outputSpecs
+  },
+  formattedOutputSpecs(state){
+    let jsonOutputSpecs = {}
+    for (let itemIndex in state.outputSpecs){
+      const item = state.outputSpecs[itemIndex]
+      jsonOutputSpecs[item.regexp] = {
+        label: item.label,
+        location: item.location,
+        name: item.name
+      }
+    }
+    return jsonOutputSpecs;
+  },
+  metadataViewAsset(state){
+    return state.metadataViewAsset;
   },
 }
