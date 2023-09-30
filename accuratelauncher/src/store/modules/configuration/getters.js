@@ -29,6 +29,24 @@ export default {
   },
   // eslint-disable-next-line no-unused-vars
   isValid(state, getters, rootState, rootGetters){
-    return false
+    if (rootGetters["generalDetails/isValid"] === false){
+      return false
+    }
+    if (rootGetters["videoDetails/isValid"] === false){
+      return false
+    }
+    if (rootGetters["audioDetails/isValid"] === false){
+      return false
+    }
+    if (rootGetters["captionDetails/isValid"] === false){
+      return false
+    }
+    if (rootGetters["tbmdDetails/isValid"] === false){
+      return false
+    }
+    if (rootGetters["spritemapDetails/isValid"] === false){
+      return false
+    }
+    return true
   },
 }

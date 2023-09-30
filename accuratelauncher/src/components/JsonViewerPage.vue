@@ -4,7 +4,7 @@ v-card.rounded-lg.mx-0
     v-row
       v-btn.mx-2.my-1(
         prepend-icon="fa-solid fa-copy"
-        v-clipboard="jsonForm"
+        @click="doCopy"
         v-clipboard:success="clipboardSuccessHandler"
         v-clipboard:error="clipboardErrorHandler"
         ) Copy
@@ -32,6 +32,7 @@ v-card.rounded-lg.mx-0
 
 
 import {mapGetters} from "vuex";
+import {Clipboard} from "v-clipboard";
 
 export default {
   name: "JsonViewerPage",
@@ -70,6 +71,9 @@ export default {
     },
   },
   methods: {
+    doCopy(){
+      Clipboard.copy(JSON.stringify(this.$store.getters['jsonForm'], '', 2));
+    },
     refresh(){
       console.log(this.$store.getters["jsonForm"])
     },

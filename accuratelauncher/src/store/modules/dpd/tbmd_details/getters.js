@@ -19,5 +19,18 @@ export default {
       res[item.name] = resData
     }
     return res
+  },
+  isValid(state){
+    for (const index in state.tbmdItems){
+      const item = state.tbmdItems[index]
+      if (!item.name
+        || (item.includeAssetName && !item.assetName)
+        || !item.label){
+        return false
+      }
+      console.log(item)
+    }
+
+    return true
   }
 }

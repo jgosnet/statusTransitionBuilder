@@ -18,9 +18,50 @@ export default {
   possibleStatusColors: ['var(--AP-SUCCESS)', 'var(--AP-ERROR)', 'var(--AP-FOREGROUND-2)'],
   metadataFields: {},
   metadataIndex: 0,
-  possibleMetadataSources: ['metadata', 'property'],
+  possibleMetadataSources: ['metadata', 'properties'],
   possibleDisplayTypes: ['smpte', 'date','time','date-time'],
   possibleStoredTypes: ['timebase', 'utcDate'],
+
+  possibleProperties: [
+    {
+      key: 'duration',
+      label: 'Duration',
+      storedType: 'timebase',
+      displayType: 'smpte'
+    },
+    {
+      key: 'resolution',
+      label: 'Resolution'
+    },
+    {
+      key: 'frameRate',
+      label: 'Frame Rate'
+    },
+    {
+      key: 'aspectRatio',
+      label: 'Aspect Ratio'
+    },
+    {
+      key: 'bitrate',
+      label: 'Bitrate'
+    },
+    {
+      key: 'codec',
+      label: 'Codec'
+    },
+    {
+      key: 'creationDate',
+      label: 'Creation Date',
+      storedType: 'date-time',
+      displayType: 'utcDate'
+    },
+    {
+      key: 'updateDate',
+      label: 'Updated',
+      storedType: 'date-time',
+      displayType: 'utcDate'
+    }
+  ],
 
   defaultOutputSpecs: {
     avQcManual: {
@@ -68,5 +109,34 @@ export default {
       name: "audioStream",
       readOnlyFields: [],
     },
-  }
+  },
+
+  defaultManualMarkers: {
+    videoIssues: {
+      "index": "videoIssues",
+      "track": "videoIssues",
+      "title": "Video Errors",
+      "backgroundColor": "#FFFF00",
+      "hoverColor": "#0000FF"
+    },
+    audioIssues: {
+      "index": "audioIssues",
+      "track": "audioIssues",
+      "title": "Audio Errors",
+      "backgroundColor": "#FFA500",
+      "hoverColor": "#0000FF"
+    },
+    ccIssues: {
+      "index": "ccIssues",
+      "track": "ccIssues",
+      "title": "Closed Caption Errors",
+      "backgroundColor": "#ff0000",
+      "hoverColor": "#0000FF"
+    }
+  },
+  manualMarkers: {},
+  manualMarkersIndex: 0,
+
+  forms: {},
+  formIndex: 0,
 }

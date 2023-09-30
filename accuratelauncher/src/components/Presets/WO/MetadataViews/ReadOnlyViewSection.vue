@@ -2,7 +2,8 @@
 div().mb-3
   v-row.px-3.py-3
     v-col(cols="8").py-1.mt-2.right-separator
-      h2(v-show="this.item.readOnlyFields.length == 0" ) drag and drop here
+      //h3(v-if="this.item.readOnlyFields.length == 0" ) drag and drop here
+      h3() drag and drop here
       draggable(v-model="item.readOnlyFields"
           :group="item.name"
           @start="drag=true"
@@ -11,12 +12,14 @@ div().mb-3
 
         template(#item="{element}")
           v-card(elevation="2" density="compact" variant="outlined" ).my-1.py-0
-            v-card-title
+            v-card-text.ma-0.pa-1
               | {{element.key}}
               v-icon(@click="removeItem(element)") fa-solid fa-xmark
+            //v-card-text
+            //  | {{element}}
 
     v-col(cols="4").py-1.mt-2.left-separator
-      h2 Available fields
+      h3 Available fields
       draggable(v-model="availableMetadataFields"
           :group="item.name"
           @start="drag=true"
@@ -24,7 +27,7 @@ div().mb-3
           item-key="id")
         template(#item="{element}")
           v-card(elevation="2" density="compact" variant="outlined" ).my-1.py-0
-            v-card-title
+            v-card-text.ma-0.pa-1
               v-tooltip(:text='element.source + ": " + element.key + " [" + element.label + "]"' location="top")
                 template(v-slot:activator="{ props }")
                   span(v-bind="props") {{element.key}}
@@ -49,17 +52,17 @@ export default {
     removeItem(mdItem){
       console.log(mdItem)
       // eslint-disable-next-line vue/no-mutating-props
-      this.item.readOnlyFields = this.item.readOnlyFields.filter(el => el.id != mdItem.id);
+      this.item.readOnlyFields = this.item.readOnlyFields.filter(el => el.index != mdItem.index);
     },
   },
   computed: {
     availableMetadataFields: {
       get() {
         let mdList = []
-        const formattedMd = this.$store.getters['woPreset/formattedMetadataFields']
+        const formattedMd = this.$store.getters['woPreset/metadataFields']
         for (const itemIndex in formattedMd){
           const mdItem = formattedMd[itemIndex];
-          if(this.item.readOnlyFields.some(fieldItem => fieldItem.id === mdItem.id)){
+          if(this.item.readOnlyFields.some(fieldItem => fieldItem.index === mdItem.index)){
             console.log("do nothing")
           } else{
             mdList.push(mdItem)

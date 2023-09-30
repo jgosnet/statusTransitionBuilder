@@ -10,6 +10,8 @@ import generalDetails from "@/store/modules/dpd/generalDetails";
 import metadata from "@/store/modules/dpd/metadata";
 import snackbar from "@/store/modules/snackbar";
 import woPreset from "@/store/modules/woPreset";
+import launcherPreset from "@/store/modules/launcherPreset";
+
 
 export const store = createStore({
   state: {},
@@ -27,5 +29,6 @@ export const store = createStore({
     generalDetails,
     metadata,
     woPreset,
+    launcherPreset,
   }
 })

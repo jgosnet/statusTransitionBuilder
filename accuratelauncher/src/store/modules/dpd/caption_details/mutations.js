@@ -9,8 +9,12 @@ export default {
       index: state.captionIndex,
       includeAssetName: false,
       assetName: null,
+      includeLanguage: false,
       language: null,
+      includeFormat: false,
       format: null,
+      includeStartTc: false,
+      startTc: null,
     };
     state.captionIndex += 1;
   },

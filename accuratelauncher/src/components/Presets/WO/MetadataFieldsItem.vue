@@ -1,15 +1,16 @@
 <template lang="pug">
 fieldset.dashed-border.pa-1
+  //| {{item}}
   legend.left-align.pl-2
     | {{ item.key }}
     v-icon.ml-3(@click="deleteItem"
       size="x-small" ) fa-solid fa-trash-can
-  div(v-show="!isExpanded").mb-3
+  div(v-show="!item.isExpanded").mb-3
     v-row.px-3.py-1
       v-col(cols="12")
         | source: {{item.source}} - display name: {{item.displayName}}
-        v-icon.float-right(@click="isExpanded = !isExpanded" color="blue" ) fa-solid fa-pen-to-square
-  div(v-show="isExpanded").mb-3
+        v-icon.float-right(@click="item.isExpanded = !item.isExpanded" color="blue" ) fa-solid fa-pen-to-square
+  div(v-show="item.isExpanded").mb-3
     v-row.px-3.py-1
       v-col(cols="6").py-1
         v-text-field(v-model="item.key" hide-details
@@ -42,7 +43,7 @@ fieldset.dashed-border.pa-1
           label="Jmespath" density="compact" )
     v-row.px-3.py-1
       v-col(cols="12")
-        v-icon.float-right(@click="isExpanded = !isExpanded" color="green" ) fa-solid fa-check
+        v-icon.float-right(@click="item.isExpanded = !item.isExpanded" color="green" ) fa-solid fa-check
 
 </template>
 

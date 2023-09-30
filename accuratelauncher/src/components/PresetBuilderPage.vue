@@ -1,5 +1,5 @@
 <template lang="pug">
-v-container(fluid).border-solid
+v-container(fluid)
   v-row
     v-col(cols="6")
       WoPresetConfiguration
@@ -44,6 +44,9 @@ export default {
       "woProviderData",
       "woRallyConfig"
     ]),
+  },
+  mounted() {
+    this.$store.dispatch("woPreset/resetManualMarkers")
   }
 }
 </script>

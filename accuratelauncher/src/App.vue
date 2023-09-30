@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card(color="transparent" elevation="0" )
+v-card(color="transparent" elevation="0" ).h-100
   SnackBarPopup
   v-layout
     v-app-bar(color="surface-variant" prominent density="compact" )
@@ -18,8 +18,7 @@ v-card(color="transparent" elevation="0" )
         v-icon fa-brands fa-youtube
         span.pl-3 Accurate launcher
         //v-spacer
-      i.pr-4 updated on: 9/20/2023
-
+      i.pr-4 updated on: 9/29/2023
     //v-navigation-drawer(permanent :width="190")
     //  v-list(density="compact" nav)
     //      v-list-item(v-for='item in menuItems'
@@ -28,7 +27,6 @@ v-card(color="transparent" elevation="0" )
     //        :prepend-icon="item.icon"
     //        exact-active-class='grey' large)
     //        v-list-item-title.item-title {{item.title}}
-
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in" )
       keep-alive
@@ -53,8 +51,12 @@ export default {
   data() {
     return {
       menuItems: [
-        {title: 'DPD input', path: '/dpd', icon: 'fa-solid fa-indent'},
-        {title: 'Preset builder', path: '/preset', icon: 'fa-solid fa-gears'},
+        {title: 'Home', path: '/', icon: 'fa-solid fa-house'},
+        {title: 'Pre-requisites', path: '/prerequisites', icon: 'fa-solid fa-list-check'},
+        {title: 'Dynamic Preset Data', path: '/dpd', icon: 'fa-solid fa-indent'},
+        {title: 'Accurate launcher', path: '/launcher', icon: 'fa-solid fa-bolt'},
+        {title: 'Accurate WO', path: '/preset', icon: 'fa-solid fa-user-check'},
+        {title: 'Check Results', path: '/results', icon: 'fa-solid fa-clipboard-check'},
       ]
     }
   },
@@ -74,6 +76,14 @@ export default {
 </script>
 
 <style>
+html, body{
+  height: 100%;
+}
+/*.vue-codemirror{*/
+/*   background-color: white !important;*/
+/*  padding-top: 0px !important;*/
+/*  }*/
+
 .cm-editor{
   min-height: 300px !important;
   max-height: 720px !important;
@@ -87,11 +97,23 @@ export default {
   text-align: right;
 }
 
+.no-border{
+  border-style: none;
+}
+
+body{
+/*background: rgb(221,221,235);*/
+/*background: linear-gradient(90deg, rgba(221,221,235,1) 0%, rgba(138,138,182,1)  100%);*/
+    width: 100%;
+    height:100%;
+}
+
+
 body{
         /*background-image: url('/src/assets/background-2462431_1920.jpg') !important;*/
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
+  /*background-repeat: no-repeat;*/
+  /*background-attachment: fixed;*/
+  /*background-size: 100% 100%;*/
 }
 #app {
   font-family: Roboto;
@@ -100,7 +122,7 @@ body{
   text-align: center;
   color: #2c3e50;
   margin-top: 45px;
-
+  border-style: none;
 
 }
 
@@ -149,58 +171,5 @@ legend{
 }
 
 
-.jv-number { color: #fc1e70 }
-
-.my-awesome-json-theme {
-  background: #fff;
-  white-space: nowrap;
-  color: #525252;
-  font-size: 14px;
-  font-family: Consolas, Menlo, Courier, monospace;
-
-  .jv-ellipsis {
-    color: #999;
-    background-color: #eee;
-    display: inline-block;
-    line-height: 0.9;
-    font-size: 0.9em;
-    padding: 0px 4px 2px 4px;
-    border-radius: 3px;
-    vertical-align: 2px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-   .jv-button { color: #49b3ff }
-  .jv-key { color: #111111 }
-  .jv-item {
-    &.jv-array { color: #111111 }
-    &.jv-boolean { color: #fc1e70 }
-    &.jv-function { color: #067bca }
-    &
-    &.jv-number-float { color: #fc1e70 }
-    &.jv-number-integer { color: #fc1e70 }
-    &.jv-object { color: #111111 }
-    &.jv-undefined { color: #e08331 }
-    &.jv-string {
-      color: #42b983;
-      word-break: break-word;
-      white-space: normal;
-    }
-  }
-  .jv-code {
-    .jv-toggle {
-      &:before {
-        padding: 0px 2px;
-        border-radius: 2px;
-      }
-      &:hover {
-        &:before {
-          background: #eee;
-        }
-      }
-    }
-  }
-}
 
 </style>

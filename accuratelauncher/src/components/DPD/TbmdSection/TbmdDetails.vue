@@ -2,9 +2,9 @@
 fieldset.pa-1
   legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
     span TBMD details
-    v-tooltip(text="123" )
-      template(v-slot:activator="{ props }")
-        v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
+    //v-tooltip(text="123" )
+    //  template(v-slot:activator="{ props }")
+    //    v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
   div(id="expand")
     v-icon(:icon="expansionIcon" size="x-large"
       @click="isExpanded = !isExpanded")
@@ -14,7 +14,7 @@ fieldset.pa-1
     v-row
       v-col(cols="12")
         TbmdDetailsItem(v-for='item in tbmdItems'
-            :key='item.name'
+            :key='item.index'
             :item="item" )
     v-row
       v-col(cols="12")

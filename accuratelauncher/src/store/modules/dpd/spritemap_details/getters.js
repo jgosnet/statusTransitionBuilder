@@ -25,5 +25,21 @@ export default {
     }
 
     return res
+  },
+  isValid(state){
+    if (state.useSpritemap === true) {
+      for (const index in state.spritemapItems) {
+        const item = state.spritemapItems[index]
+        if (!item.name
+          || (item.includeAssetName && !item.assetName)
+          || !item.label){
+          return false
+        }
+
+        console.log(item)
+      }
+    }
+
+    return true
   }
 }

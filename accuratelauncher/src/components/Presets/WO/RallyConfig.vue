@@ -1,9 +1,9 @@
 <template lang="pug">
 v-window-item(value="rallyConfig" )
-  v-row.my-1
+  v-row.my-1.ml-1
     v-btn.mx-2.my-1(
       prepend-icon="fa-solid fa-copy"
-      v-clipboard="woRallyConfig"
+      @click="doCopy"
       v-clipboard:success="clipboardSuccessHandler"
       v-clipboard:error="clipboardErrorHandler"
       ) Copy
@@ -25,6 +25,7 @@ v-window-item(value="rallyConfig" )
 import CodeMirror from "vue-codemirror6";
 import {mapGetters} from "vuex";
 import {json, jsonParseLinter} from "@codemirror/lang-json";
+import {Clipboard} from "v-clipboard";
 
 export default {
   name: "RallyConfig",
@@ -43,6 +44,9 @@ export default {
     ...mapGetters("woPreset", ["woRallyConfig"]),
   },
   methods:{
+    doCopy(){
+      Clipboard.copy(this.$store.getters['woPreset/woRallyConfig']);
+    },
     clipboardSuccessHandler () {
       console.log('success')
       this.dismissCountDown = this.dismissSecs

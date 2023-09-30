@@ -8,6 +8,8 @@ export default {
       label: "",
       index: state.audioIndex,
       includeAssetName: false,
+      includeLanguage: false,
+      language: null,
       assetName: null
     };
     state.audioIndex += 1;

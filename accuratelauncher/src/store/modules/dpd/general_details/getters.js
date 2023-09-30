@@ -17,5 +17,19 @@ export default {
       res['start_tc'] = state.startTc
     }
     return res
+  },
+  isValid(state){
+    if (state.editStartTc === true &&  !state.startTc){
+      return false
+    }
+    if (state.editStartTc){
+      const tcRegexp = "^([0-1][0-9]|[0-2][0-3]):([0-5][0-9]):([0-5][0-9])[:;]([0-6][0-9])$";
+      const intRegexp = "^\\d+$";
+      if (!state.startTc.match(intRegexp) && !state.startTc.match(tcRegexp)){
+        return false
+      }
+    }
+
+    return true
   }
 }

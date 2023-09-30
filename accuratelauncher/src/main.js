@@ -48,6 +48,9 @@ import {router} from "@/router"
 import { basicSetup } from 'codemirror'
 import VueCodemirror from 'vue-codemirror'
 
+import Vue3ColorPicker from "vue3-colorpicker";
+import "vue3-colorpicker/style.css";
+
 export const Vue = createApp(App)
   .use(vuetify)
   .use(Clipboard)
@@ -65,6 +68,7 @@ export const Vue = createApp(App)
   .use(VueDiff, {
     componentName: 'Diff',
   })
+  .use(Vue3ColorPicker)
   .mount('#app')
 
 

@@ -8,8 +8,8 @@ export default {
   deleteOutputStatus(context, item){
     context.commit('deleteOutputStatus', item)
   },
-  addMetadataField(context){
-    context.commit('addMetadataField')
+  addMetadataField(context, payload){
+    context.commit('addMetadataField', payload)
   },
   deleteMetadataField(context, item){
     context.commit('deleteMetadataField', item)
@@ -22,5 +22,20 @@ export default {
   },
   resetOutputSpecs(context, item){
     context.commit('resetOutputSpecs', item)
+  },
+  resetManualMarkers(context, item){
+    context.commit('resetManualMarkers', item)
+  },
+  addManualMarker(context){
+    context.commit('addManualMarker')
+  },
+  deleteManualMarker(context, item){
+    context.commit('deleteManualMarker', item)
+  },
+  addForm(context){
+    context.commit('addForm')
+  },
+  deleteForm(context, item){
+    context.commit('deleteForm', item)
   },
 }

@@ -16,5 +16,14 @@ export default {
       res["asset_name"] = state.videoAssetName
     }
     return res
+  },
+  isValid(state){
+    if (!state.videoLabel){
+      return false
+    }
+    if (state.includeAssetName === true &&  !state.videoAssetName){
+      return false
+    }
+    return true
   }
 }

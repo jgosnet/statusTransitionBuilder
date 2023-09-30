@@ -3,7 +3,8 @@ v-window-item(value="providerData" )
   v-row.my-1.ml-1
     v-btn.mx-2.my-1(
       prepend-icon="fa-solid fa-copy"
-      @click="doCopy"
+
+    @click="doCopy"
       v-clipboard:success="clipboardSuccessHandler"
       v-clipboard:error="clipboardErrorHandler"
       ) Copy
@@ -14,7 +15,7 @@ v-window-item(value="providerData" )
       v-show="dismissCountDown > 0")
 
   v-row.mx-1
-    CodeMirror.py-3.w-100(v-model="woProviderData"
+    CodeMirror.py-3.w-100(v-model="launcherProviderData"
           :lang="lang"
         :linter="linter"
         basic
@@ -25,30 +26,30 @@ v-window-item(value="providerData" )
 <script>
 import CodeMirror from 'vue-codemirror6';
 import {mapGetters} from "vuex";
-import {json, jsonParseLinter} from "@codemirror/lang-json";
-import {Clipboard} from "v-clipboard";
+import {python} from "@codemirror/lang-python";
+import { Clipboard } from "v-clipboard"
 
 export default {
-  name: "ProviderData",
+  name: "LauncherPresetProviderData",
   components:{
     CodeMirror
   },
   data(){
     return {
-      lang: json(),
-      linter: jsonParseLinter(),
+      lang: python(),
+      // linter: pythonLanguage(),
+      linter: null,
       dismissSecs: 5,
       dismissCountDown: 0,
     }
   },
   computed:{
-    ...mapGetters("woPreset", ["woProviderData"]),
+    ...mapGetters("launcherPreset", ["launcherProviderData"]),
   },
   methods: {
-        doCopy(){
-      Clipboard.copy(this.$store.getters['woPreset/woProviderData']);
+    doCopy(){
+      Clipboard.copy(this.$store.getters['launcherPreset/launcherProviderData']);
     },
-    // eslint-disable-next-line no-unused-vars
     clipboardSuccessHandler () {
       console.log('success')
       this.dismissCountDown = this.dismissSecs
@@ -61,13 +62,15 @@ export default {
     clipboardErrorHandler () {
       console.log('error')
     }
-  }
+  },
+
 }
 </script>
 
 <style scoped>
 .cm-editor{
-  min-height: 500px !important;
-  max-height: 720px !important;
+  /*background-color: white !important;*/
 }
+
+
 </style>

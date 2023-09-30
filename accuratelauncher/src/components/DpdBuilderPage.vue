@@ -1,5 +1,5 @@
 <template lang="pug">
-v-container(fluid).border-solid
+v-container(fluid)
   v-row
     v-col(cols="8")
       ConfigurationBase

@@ -2,9 +2,9 @@
 fieldset.pa-1.mb-5
   legend.left-align.pl-2.font-weight-bold(@click="isExpanded = !isExpanded")
     span Metadata View
-    v-tooltip(text="123" )
-      template(v-slot:activator="{ props }")
-        v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
+    //v-tooltip(text="123" )
+    //  template(v-slot:activator="{ props }")
+    //    v-icon(v-bind="props").pl-2 fa-solid fa-circle-info
   div(id="expand")
     v-icon(:icon="expansionIcon" size="x-large"
       @click="isExpanded = !isExpanded")
@@ -29,7 +29,7 @@ export default {
   data(){
     return {
       tab: "asset",
-      isExpanded: true,
+      isExpanded: false,
     }
   },
   computed: {

@@ -5,9 +5,7 @@ export default {
 
     let res = {
       gateway: {
-        players: {
-          video: ""
-        }
+        players: ""
       },
       services: {
         accuratePlayer: {
@@ -34,16 +32,16 @@ export default {
               },
               metadataFields: getters['formattedMetadataFields'],
               metadataViews: [
+                getters['formattedMetadataViewAsset']
               ],
-              manualMarkerTracks: [
-              ]
+              manualMarkerTracks: getters['formattedManualMarkers']
             }
           }
         }
       }
     };
     let resString = JSON.stringify(res, null, 2);
-    resString = resString.replace('"video": ""', '"video": {{DYNAMIC_PRESET_DATA[\'video_data\'] | tojson | replace(\'\\u003c\', \'<\') | replace(\'\\u003e\', \'>\')}}')
+    resString = resString.replace('"players": ""', '"players": {{DYNAMIC_PRESET_DATA[\'video_data\'] | tojson | replace(\'\\\\u003c\', \'<\') | replace(\'\\\\u003e\', \'>\')}}')
     return resString
   },
   // eslint-disable-next-line no-unused-vars
@@ -86,7 +84,7 @@ export default {
     for (let itemIndex in state.metadataFields){
       const mdFieldItem = state.metadataFields[itemIndex]
       jsonMdFields.push({
-        id: mdFieldItem.index + mdFieldItem.key,
+        id: mdFieldItem.index + '_' + mdFieldItem.key,
         key: mdFieldItem.key,
         label: mdFieldItem.displayName,
         source: mdFieldItem.source,
@@ -105,6 +103,12 @@ export default {
   possibleStoredTypes(state){
     return state.possibleStoredTypes
   },
+  possibleProperties(state){
+    return state.possibleProperties
+  },
+  possiblePropertiesNames(state){
+    return state.possibleProperties.map(obj => obj.key)
+  },
   outputSpecs(state){
     return state.outputSpecs
   },
@@ -122,5 +126,109 @@ export default {
   },
   metadataViewAsset(state){
     return state.metadataViewAsset;
+  },
+  // eslint-disable-next-line no-unused-vars
+  formattedMetadataViewAsset(state){
+    let assetReadonlyFields = state.metadataViewAsset.asset.readOnlyFields.map(obj =>{
+        return {
+          metadataFieldId: obj.index + '_' + obj.key
+        };
+      })
+    let videoStreamReadonlyFields = state.metadataViewAsset.videoStream.readOnlyFields.map(obj =>{
+        return {
+          metadataFieldId: obj.index + '_' + obj.key
+        };
+      })
+    let audioStreamReadonlyFields = state.metadataViewAsset.audioStream.readOnlyFields.map(obj =>{
+        return {
+          metadataFieldId: obj.index + '_' + obj.key
+        };
+      })
+    let videoFileReadonlyFields = state.metadataViewAsset.videoFile.readOnlyFields.map(obj =>{
+        return {
+          metadataFieldId: obj.index + '_' + obj.key
+        };
+      })
+    let audioFileReadonlyFields = state.metadataViewAsset.audioFile.readOnlyFields.map(obj =>{
+        return {
+          metadataFieldId: obj.index + '_' + obj.key
+        };
+      })
+
+
+
+    console.log("asetReadonlyFields")
+    console.log(assetReadonlyFields)
+
+    let res = {
+      active: true,
+      id: "defaultMetadataView",
+      name: "Default",
+      description: "The default metadata view",
+      fieldSets: {
+        asset: {
+          form: null,
+          readOnlyFields: assetReadonlyFields,
+        },
+        videoStream: {
+          readOnlyFields: videoStreamReadonlyFields,
+        },
+        audioStream: {
+          readOnlyFields: audioStreamReadonlyFields,
+        },
+        videoFile: {
+          readOnlyFields: videoFileReadonlyFields,
+        },
+        audioFile: {
+          readOnlyFields: audioFileReadonlyFields,
+        }
+      }
+    }
+
+    return res;
+  },
+  manualMarkers(state){
+    return state.manualMarkers
+  },
+  formattedManualMarkers(state){
+    let arrayMarkers = []
+    for (let itemIndex in state.manualMarkers){
+      const markerItem = state.manualMarkers[itemIndex]
+      arrayMarkers.push({
+        track: markerItem.track,
+        title: markerItem.title,
+        order: itemIndex,
+        markerStyle: {
+          backgroundColor: markerItem.backgroundColor,
+          hover: {
+            backgroundColor: markerItem.hoverColor
+          }
+        },
+
+      })
+    }
+    return arrayMarkers;
+  },
+  forms(state){
+    return state.forms
+  },
+  formsNames(state){
+    let arrayForms = []
+    for (let itemIndex in state.forms){
+      const formItem = state.forms[itemIndex]
+      arrayForms.push(formItem.name)
+    }
+    return arrayForms;
+  },
+  formattedForms(state){
+    let arrayForms = []
+    for (let itemIndex in state.forms){
+      const formItem = state.forms[itemIndex]
+      arrayForms.push({
+        index: itemIndex,
+        name: formItem.name
+      })
+    }
+    return arrayForms;
   },
 }
