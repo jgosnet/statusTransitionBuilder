@@ -52,7 +52,7 @@ export default {
     return {
       menuItems: [
         {title: 'Home', path: '/', icon: 'fa-solid fa-house'},
-        {title: 'Pre-requisites', path: '/prerequisites', icon: 'fa-solid fa-list-check'},
+        {title: 'Prerequisites', path: '/prerequisites', icon: 'fa-solid fa-list-check'},
         {title: 'Dynamic Preset Data', path: '/dpd', icon: 'fa-solid fa-indent'},
         {title: 'Accurate launcher', path: '/launcher', icon: 'fa-solid fa-bolt'},
         {title: 'Accurate WO', path: '/preset', icon: 'fa-solid fa-user-check'},

@@ -11,6 +11,7 @@ import metadata from "@/store/modules/dpd/metadata";
 import snackbar from "@/store/modules/snackbar";
 import woPreset from "@/store/modules/woPreset";
 import launcherPreset from "@/store/modules/launcherPreset";
+import prerequisites from "@/store/modules/prerequisites";
 
 
 export const store = createStore({
@@ -30,5 +31,6 @@ export const store = createStore({
     metadata,
     woPreset,
     launcherPreset,
+    prerequisites,
   }
 })

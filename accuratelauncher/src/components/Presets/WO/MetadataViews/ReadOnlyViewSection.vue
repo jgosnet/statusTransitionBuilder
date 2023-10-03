@@ -3,7 +3,8 @@ div().mb-3
   v-row.px-3.py-3
     v-col(cols="8").py-1.mt-2.right-separator
       //h3(v-if="this.item.readOnlyFields.length == 0" ) drag and drop here
-      h3() drag and drop here
+      h3() Read-only fields
+      | drag and drop here
       draggable(v-model="item.readOnlyFields"
           :group="item.name"
           @start="drag=true"

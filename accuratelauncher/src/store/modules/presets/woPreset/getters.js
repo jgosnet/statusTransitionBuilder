@@ -11,19 +11,7 @@ export default {
         accuratePlayer: {
           avFrontend: {
             settings: {
-              forms: {
-                assetForm: {
-                  schema: {
-                    type: "object",
-                    properties: {
-                    }
-                  },
-                  uischema: {
-                    type: "VerticalLayout",
-                    elements: []
-                  }
-                }
-              },
+              forms: getters['formattedForms'],
               assetStatus: {
                 statusMetadataFieldName: "asset_status",
                 commentMetadataFieldName: "asset_status_comment",
@@ -75,6 +63,17 @@ export default {
   },
   possibleStatusColors(state){
     return state.possibleStatusColors
+  },
+  editableMetadataFieldLabels(state){
+    let jsonMdFields = []
+    for (let itemIndex in state.metadataFields){
+      const mdFieldItem = state.metadataFields[itemIndex]
+      if (mdFieldItem.source === 'metadata'){
+        jsonMdFields.push(mdFieldItem.displayName)
+      }
+
+    }
+    return jsonMdFields;
   },
   metadataFields(state){
     return state.metadataFields
@@ -130,34 +129,34 @@ export default {
   // eslint-disable-next-line no-unused-vars
   formattedMetadataViewAsset(state){
     let assetReadonlyFields = state.metadataViewAsset.asset.readOnlyFields.map(obj =>{
-        return {
-          metadataFieldId: obj.index + '_' + obj.key
-        };
-      })
+      return {
+        metadataFieldId: obj.index + '_' + obj.key
+      };
+    })
     let videoStreamReadonlyFields = state.metadataViewAsset.videoStream.readOnlyFields.map(obj =>{
-        return {
-          metadataFieldId: obj.index + '_' + obj.key
-        };
-      })
+      return {
+        metadataFieldId: obj.index + '_' + obj.key
+      };
+    })
     let audioStreamReadonlyFields = state.metadataViewAsset.audioStream.readOnlyFields.map(obj =>{
-        return {
-          metadataFieldId: obj.index + '_' + obj.key
-        };
-      })
+      return {
+        metadataFieldId: obj.index + '_' + obj.key
+      };
+    })
     let videoFileReadonlyFields = state.metadataViewAsset.videoFile.readOnlyFields.map(obj =>{
-        return {
-          metadataFieldId: obj.index + '_' + obj.key
-        };
-      })
+      return {
+        metadataFieldId: obj.index + '_' + obj.key
+      };
+    })
     let audioFileReadonlyFields = state.metadataViewAsset.audioFile.readOnlyFields.map(obj =>{
-        return {
-          metadataFieldId: obj.index + '_' + obj.key
-        };
-      })
+      return {
+        metadataFieldId: obj.index + '_' + obj.key
+      };
+    })
 
 
 
-    console.log("asetReadonlyFields")
+    console.log("assetReadonlyFields")
     console.log(assetReadonlyFields)
 
     let res = {
@@ -167,7 +166,7 @@ export default {
       description: "The default metadata view",
       fieldSets: {
         asset: {
-          form: null,
+          form: state.metadataViewAsset.asset.form,
           readOnlyFields: assetReadonlyFields,
         },
         videoStream: {
@@ -192,12 +191,14 @@ export default {
   },
   formattedManualMarkers(state){
     let arrayMarkers = []
+    let index = 1;
     for (let itemIndex in state.manualMarkers){
       const markerItem = state.manualMarkers[itemIndex]
       arrayMarkers.push({
         track: markerItem.track,
         title: markerItem.title,
-        order: itemIndex,
+        form: markerItem.associatedForm,
+        order: index,
         markerStyle: {
           backgroundColor: markerItem.backgroundColor,
           hover: {
@@ -206,6 +207,7 @@ export default {
         },
 
       })
+      index += 1;
     }
     return arrayMarkers;
   },
@@ -220,15 +222,79 @@ export default {
     }
     return arrayForms;
   },
-  formattedForms(state){
-    let arrayForms = []
+  formattedForms(state, getters){
+    let dictForms = {}
     for (let itemIndex in state.forms){
-      const formItem = state.forms[itemIndex]
-      arrayForms.push({
-        index: itemIndex,
-        name: formItem.name
-      })
+      const formItem = state.forms[itemIndex];
+
+      let formSchema =
+        {
+          schema: {
+            type: "object",
+            properties: {},
+            required: [],
+          },
+          uischema: {
+            type: "VerticalLayout",
+            elements: [],
+            defaultValues: {
+            }
+          }
+        }
+
+      formItem.properties.forEach( elt => {
+        const associatedMdObj = getters['formattedMetadataFields'].find(obj => obj.label === elt.associatedMetadata)
+
+        if (associatedMdObj){
+          if (elt.isRequired){
+            formSchema['schema']['required'].push(associatedMdObj.key);
+          }
+          formSchema['schema']['properties'][associatedMdObj.key] = {
+            type: elt.fieldType,
+          }
+          if (elt.displayType === 'radiobutton' ||
+              elt.displayType === 'checkbox' ||
+                !elt.displayType){
+            if (elt.hasEnum){
+              if (elt.fieldType === 'string'){
+                formSchema['schema']['properties'][associatedMdObj.key]['enum'] = elt.enumList.map(enumVal => enumVal.name);
+              } else if (elt.fieldType === 'array'){
+                formSchema['schema']['properties'][associatedMdObj.key]['items']= {enum: elt.enumList.map(enumVal => enumVal.name)};
+              }
+
+            }
+          }
+
+          if (elt.defaultValue){
+            formSchema['uischema']['defaultValues'][associatedMdObj.key] = elt.defaultValue;
+          }
+
+          let uiDict = {
+            type: "Control",
+            scope: `#/properties/${associatedMdObj.key}`,
+            options: {}
+          }
+          if (elt.displayType === 'radiobutton'){
+            uiDict['options']['format'] = 'radio';
+          }
+          if (elt.displayType === 'checkbox'){
+            uiDict['options']['format'] = 'checkbox';
+          }
+          if (elt.displayType === 'date'){
+            uiDict['options']['format'] = 'date';
+          }
+          if (elt.fieldType === 'boolean' || elt.displayType === 'boolean'){
+            uiDict['options']['toggle'] = true;
+          }
+
+          formSchema['uischema']['elements'].push(uiDict)
+        }
+
+
+      });
+
+      dictForms[formItem.name] = formSchema;
     }
-    return arrayForms;
+    return dictForms;
   },
 }

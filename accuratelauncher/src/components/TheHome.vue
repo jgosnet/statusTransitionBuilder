@@ -7,7 +7,7 @@ v-container(fluid).no-border
         v-card(elevation="3" )
           v-card-title
             | [Presets]
-            b  Pre-requisites
+            b  Prerequisites
           v-card-text
             p The Accurate launcher relies on a few modules developped by SDVI's Solutions Architecture team. These modules need to be deployed as importable files in Rally.
 

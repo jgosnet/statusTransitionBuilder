@@ -30,11 +30,10 @@ fieldset.dashed-border.pa-1
           @end="drag=false"
           item-key="index")
           template(#item="{element}")
-            v-card(elevation="2" density="compact" variant="outlined" ).my-1.py-0
-              v-card-text.ma-0.pa-1
-                v-icon.handle.float-left fa-solid fa-bars
-                | --{{element.index}}--
-                //v-icon(@click="removeItem(element)") fa-solid fa-xmark
+            FormsViewItemProperty(@deleteProperty='deleteProperty'
+                :itemProperty="element"
+                :availableMdFields="availableMetadataFields")
+
 
     v-row.px-3.py-1
       v-col(cols="12")
@@ -43,10 +42,12 @@ fieldset.dashed-border.pa-1
 
 <script>
 import draggable from 'vuedraggable';
+import FormsViewItemProperty from "@/components/Presets/WO/Forms/FormsViewItemProperty";
 
 export default {
   name: "FormsViewItem",
   components: {
+    FormsViewItemProperty,
     draggable
   },
   props: ['item'],
@@ -56,12 +57,34 @@ export default {
     }
   },
   computed: {
+    availableMetadataFields(){
+      let mdFields = this.$store.getters['woPreset/editableMetadataFieldLabels'];
+      console.log(mdFields)
+      let availableFieldLabels = []
+
+      mdFields.forEach(name => {
+        console.log(`name: ${name}`)
+        const propertyWithLabel = this.item.properties.filter(elt => elt.associatedMetadata == name)
+        console.log(propertyWithLabel)
+        if (!propertyWithLabel.length){
+          availableFieldLabels.push(name)
+        }
+      })
+
+      return availableFieldLabels
+    },
   },
   methods: {
     addProperty(){
       // eslint-disable-next-line vue/no-mutating-props
       this.item.properties.push({
-        "index": this.propertiesIndex,
+        index: this.propertiesIndex,
+        isExpanded: true,
+        associatedMetadata: null,
+        fieldType: 'string',
+        isRequired: false,
+        enumList: [],
+        hasEnum: false,
       });
       this.propertiesIndex += 1;
     },
@@ -69,6 +92,11 @@ export default {
       console.log(`deleting manual marker:`)
       console.log(this.item)
       this.$store.dispatch("woPreset/deleteForm", this.item)
+    },
+    deleteProperty(propertyIndex){
+      console.log(`deleting property: ${propertyIndex}`);
+      // eslint-disable-next-line vue/no-mutating-props
+      this.item.properties = this.item.properties.filter((obj) => obj.index != propertyIndex);
     }
   }
 }

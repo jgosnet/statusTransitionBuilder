@@ -15,7 +15,7 @@ fieldset.pa-1.mb-5
             :key='item.index')
       v-col(cols="12")
         FormsViewItem(
-            :item="item" )
+            :item="item")
 
     v-row
       v-col(cols="12")
