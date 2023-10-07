@@ -46,8 +46,8 @@ export default {
     ...mapGetters("status", ["jsonForm"]),
   },
   methods: {
-        doCopy(){
-        Clipboard.copy(this.$store.getters['status/jsonForm']);
+    doCopy(){
+      Clipboard.copy(this.$store.getters['status/jsonForm']);
     },
     // eslint-disable-next-line no-unused-vars
     clipboardSuccessHandler () {

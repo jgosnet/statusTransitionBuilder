@@ -8,13 +8,18 @@ div
           density="compact" )
   v-row.px-3.py-1
     v-col(cols="1").py-1.my-0
-      v-btn(size="small" @click="addStep")
-        v-icon fa-solid fa-plus
+      //v-icon(@click="openNewForm") fa-solid fa-user
+      //test-form
+      StepForm()
+
     v-col(cols="11").py-1.my-0
-      //| statuses: --{{this.status}}--
-      span(v-show="!this.status.length" ) No Steps.
-      div(v-for="step in this.status" :key="step.index" v-show="step.name.includes(search)" )
-        StepItem(:item="step").mb-3
+      span(v-if="!this.status.length" ) No Steps.
+      div(v-else)
+        div(v-show="step.name.includes(search)"
+          v-for="step in this.status"
+          :key="step.index"
+          )
+          StepItem(:item="step").mb-3
 
 
 </template>
@@ -23,11 +28,14 @@ div
 import {mapGetters} from "vuex";
 import draggable from "vuedraggable";
 import StepItem from "@/components/Configuration/StepItem";
-
+import StepForm from "@/components/Configuration/Steps/StepForm";
+import TestForm from "@/components/Configuration/Steps/testForm";
 
 export default {
   name: "StepsView",
   components:{
+    TestForm,
+    StepForm,
     StepItem,
     draggable,
   },
@@ -40,18 +48,10 @@ export default {
   },
   computed: {
     ...mapGetters('status', ['status']),
-    statusList(){
-      let res = [];
-      // for (const statusItem of this.$store.getters['status/status']){
-      //   console.log(statusItem)
-      //   res.push(statusItem)
-      // }
-      return res
-    }
   },
   methods: {
-    addStep(){
-      this.$store.dispatch("status/addStep")
+    openNewForm(){
+      this.$store.dispatch('status/updateStepForm', true);
     }
   }
 }

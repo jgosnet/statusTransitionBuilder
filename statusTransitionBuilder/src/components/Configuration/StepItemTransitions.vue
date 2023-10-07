@@ -42,14 +42,14 @@ v-card
                     v-icon.handle.float-right(color="red" @click="deleteElement(element)" size="x-large" ) fa-solid fa-xmark
 
                 div(v-show="element.isExpanded" )
-                  StepItemTransitionsOperation(:item="element").mb-2
+                  StepItemTransitionsOperation(:item="element" :parent="item").mb-2
 
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import {mapGetters} from "vuex";
-import StepItemTransitionsOperation from "@/components/Configuration/StepItemTransitionsOperation";
+import StepItemTransitionsOperation from "@/components/Configuration/StepItemTransitionsOperations";
 
 export default {
   name: "StepItemTransitions",

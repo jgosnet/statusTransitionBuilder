@@ -2,6 +2,7 @@
 fieldset.dashed-border.pa-1
   legend.left-align.pl-2
     b {{ item.name }}
+    NewStepForm.float-left(:item="item")
     v-icon.ml-3(@click="deleteItem"
       size="x-small" ) fa-solid fa-trash-can
   div(id="expand")
@@ -11,11 +12,11 @@ fieldset.dashed-border.pa-1
 
 
   div(v-show="item.isExpanded").mb-3
-    v-row.px-3.py-1
-      v-col(cols="12").py-1
-        v-text-field(v-model="item.name" hide-details
-          label="Step name"
-          density="compact" )
+    //v-row.px-3.py-1
+    //  v-col(cols="12").py-1
+    //    v-text-field(v-model="item.name" hide-details
+    //      label="Step name"
+    //      density="compact" )
     v-row.px-3.py-1
       v-col(cols="12").py-1
         StepItemStatus(:item="item")
@@ -29,9 +30,16 @@ fieldset.dashed-border.pa-1
 <script>
 import StepItemStatus from "@/components/Configuration/StepItemStatus";
 import StepItemTransitions from "@/components/Configuration/StepItemTransitions";
+import NewStepForm from "@/components/Configuration/Steps/StepForm";
+
+
 export default {
   name: "StepItem",
-  components: {StepItemTransitions, StepItemStatus},
+  components: {
+    StepItemTransitions,
+    StepItemStatus,
+    NewStepForm
+  },
   props: ['item'],
   computed: {
     expansionIcon() {

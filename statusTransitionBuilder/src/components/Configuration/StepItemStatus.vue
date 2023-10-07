@@ -4,11 +4,10 @@ v-card
     b.px-4 Status list
     | ({{item.status.length}} items)
     //v-icon.ml-3(size="x-small" ) fa-solid fa-trash-can
-    v-icon.float-right.bg-transparent(:icon="expansionIcon" size="x-large"
-      )
-  div(v-show="!isExpanded").py-1
+    v-icon.float-right.bg-transparent(:icon="expansionIcon" size="x-large")
+  div(v-if="!isExpanded").py-1
 
-  div(v-show="isExpanded").mb-3
+  div(v-else).mb-3
     v-row.px-3.py-1
       v-col(cols="1").py-1.my-0
         v-btn(size="small" @click="addStatus")
@@ -47,6 +46,7 @@ v-card
                     v-col(cols="3")
                       v-text-field(v-model="element.name" hide-details
                             label="Name" density="compact" variant="outlined" )
+
                     v-col(cols="4")
                       v-combobox(v-model="element.group" hide-details
                             label="Group" density="compact" :items="possibleGroups" )
@@ -75,18 +75,15 @@ v-card
                       v-combobox(v-model="element.endpoints" hide-details clearable=""
                             label="Endpoints" density="compact" :items="possibleEndpoints" multiple="" chips)
 
-                  v-row.px-3.py-1(v-show="element.includeNotification")
-                    StepItemStatusMetadata(:item="element")
+                  div(v-show="element.includeNotification")
+                    v-row.px-3.py-1()
+                      StepItemStatusMetadata(:item="element")
 
-                  v-row.px-3.py-1(v-show="element.includeNotification")
-                    v-col(cols="12").pb-2.pt-0
-                      v-combobox(v-model="element.attachments" hide-details clearable
-                            label="Attachments (labels)" density="compact" multiple chips)
-              //  "include_metadata": [
-              //      ("details", "asset_details"),
-              //      ("id", "asset_details.id")
-              //  ],
-              //  "attachments": ["{label}_pdf_report"]
+                    v-row.px-3.py-1()
+                      v-col(cols="12").pb-2.pt-0
+                        v-combobox(v-model="element.attachments" hide-details clearable
+                              label="Attachments (labels)" density="compact" multiple chips)
+
 
 </template>
 

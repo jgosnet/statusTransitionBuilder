@@ -33,6 +33,9 @@ export default {
     let resString = "STATUS_TRANSITIONS = " + JSON.stringify(res, null, 2);
     return resString
   },
+  statusList(state){
+    return state.status;
+  },
   status(state){
     return state.status;
   },
@@ -48,17 +51,20 @@ export default {
     }
     return items;
   },
+  // eslint-disable-next-line no-unused-vars
   possibleMessages(state){
-    let items = [];
-    for (const stepItem of state.status){
-      for (const statusItem of stepItem.status){
-        if (!items.includes(statusItem.message) && statusItem.message !== ''){
-          items.push(statusItem.message)
-        }
-
-      }
-    }
-    return items;
+    console.log("getting possible messages")
+    return ['test123', 'test'];
+    // let items = [];
+    // for (const stepItem of state.status){
+    //   for (const statusItem of stepItem.status){
+    //     if (!items.includes(statusItem.message) && statusItem.message !== ''){
+    //       items.push(statusItem.message)
+    //     }
+    //
+    //   }
+    // }
+    // return items;
   },
   possibleEndpoints(state){
     let items = [];
@@ -92,5 +98,11 @@ export default {
   },
   possibleOperations(state){
     return state.possibleOperations
+  },
+  availableStepNames(state){
+    return state.status.map(obj => obj.name);
+  },
+  stepNameForm(state){
+    return state.stepNameForm;
   }
 }
