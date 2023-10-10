@@ -10,5 +10,8 @@ export default {
   },
   updateStepForm(context, value){
     context.commit('updateStepForm', value)
-  }
+  },
+  importConfig(context, value){
+    context.commit('importConfig', value)
+  },
 }

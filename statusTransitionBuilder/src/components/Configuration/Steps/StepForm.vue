@@ -14,8 +14,8 @@ div
         v-card-text
           v-row.px-3.py-1
             v-col(cols="12").py-1.my-0
-              v-text-field(v-model="stepName" hide-details @keyup.enter="confirm()"
-                label="Step Name" density="compact" )
+              v-text-field(  v-model="stepName" hide-details @keyup.enter="confirm()"
+                label="Step Name" density="compact" autofocus)
         v-card-actions
           v-spacer
           v-btn(@click="this.isActive = false") Cancel

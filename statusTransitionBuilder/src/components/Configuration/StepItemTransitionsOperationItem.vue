@@ -8,8 +8,12 @@ v-card.mb-2.py-0(elevation="6" )
         v-select(v-model="item.opType" hide-details
                       label="Type" density="compact" :items="possibleOperations")
       v-col(cols="6")
-        v-select(v-model="item.keys" hide-details :items="possibleKeys" multiple
+        v-select(v-if="item.opType !== 'clear'"
+          v-model="item.keys" hide-details :items="possibleKeys" multiple
                 label="Keys" density="compact")
+        v-select(v-else
+          v-model="item.groups" hide-details :items="possibleGroups" multiple
+              label="Groups" density="compact")
       v-col(cols="1")
         v-icon.handle.float-right(color="red" @click="deleteOperation()" size="x-large" ) fa-solid fa-xmark
 
@@ -36,7 +40,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('status', ['possibleOperations', 'statusList']),
+    ...mapGetters('status', ['possibleOperations', 'statusList', 'possibleGroups']),
     statusListMinusCurrent(){
       return this.$store.getters['status/status'].filter(obj => obj.index !== this.parent.index).map(obj => obj.name);
       // return this.$store.getters['status/status']

@@ -15,13 +15,38 @@ export default {
           group: statusItem.group,
           icon: statusItem.icon,
           color: statusItem.color,
+        };
+        if (statusItem.includeNotification){
+          itemStatuses[statusItem.name]['subject'] = statusItem.subject;
+          itemStatuses[statusItem.name]['endpoints'] = statusItem.endpoints;
+          itemStatuses[statusItem.name]['attachments'] = statusItem.attachments;
+          itemStatuses[statusItem.name]['include_metadata'] = [];
+          for (const mdObj of statusItem.includeMetadata){
+            itemStatuses[statusItem.name]['include_metadata'].push("!!"+mdObj.name + ", "+  mdObj.jmespath + "!!");
+          }
         }
+
       }
 
       let itemTransitions = {}
+      console.log("!!!!!!")
+      console.log(stepItem)
       for (const transitionItem of stepItem.transitions){
-        itemTransitions[transitionItem.name] = {
-          message: transitionItem.message
+        itemTransitions[transitionItem.name] = [];
+        for (const transOperation of transitionItem.operations){
+
+          let transitionOp = {
+            operation: transOperation.opType
+          }
+          if (transOperation.opType === 'clear'){
+            transitionOp['groups'] = transOperation.groups;
+          } else{
+            transitionOp['keys'] = transOperation.keys;
+          }
+          if (transOperation.otherStepName){
+            transitionOp['step_name'] = transOperation.stepName;
+          }
+          itemTransitions[transitionItem.name].push(transitionOp)
         }
       }
 
@@ -30,7 +55,9 @@ export default {
         transitions: itemTransitions,
       }
     }
-    let resString = "STATUS_TRANSITIONS = " + JSON.stringify(res, null, 2);
+    let resString = "STATUS_TRANSITIONS = " + JSON.stringify(res, null, 2)
+      .replaceAll('"!!', '(').replaceAll('!!"', ')')
+      .replaceAll('true', 'True').replaceAll('false', 'False');
     return resString
   },
   statusList(state){
