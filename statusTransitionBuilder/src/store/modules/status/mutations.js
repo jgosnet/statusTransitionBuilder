@@ -35,19 +35,19 @@ export default {
     console.log(state);
     console.log("importing")
     console.log(value.replace(/(\w+\s* =\s*)/, '')
-      .replaceAll(/\((\w+), (\w+)\)/g, '{"name": "$1", "jmespath": "$2"}'));
+      .replaceAll(/\(("[\w .]+"), ("[\w .]+")\)/g, '{"name": $1, "jmespath": $2}'));
     // state.stepNameForm = value;
     const obj = JSON.parse(value.replace(/(\w+\s* =\s*)/, '')
-      .replaceAll(/\((\w+), (\w+)\)/g, '{"name": "$1", "jmespath": "$2"}'));
+      .replaceAll(/\(("[\w .]+"), ("[\w .]+")\)/g, '{"name": $1, "jmespath": $2}'));
     state.status = []
     for (const stepName in obj){
       let newStep = { 'index': itemIndex, 'name': stepName, 'status': [], 'transitions': [], 'isExpanded': false};
       itemIndex += 1;
       const stepItem = obj[stepName];
       console.log(stepItem);
-      for (const statusName in stepItem.status){
+      for (const statusName in stepItem.statuses){
         console.log(statusName)
-        const statusItem = stepItem.status[statusName];
+        const statusItem = stepItem.statuses[statusName];
         console.log(statusItem)
 
         let newStatus = {

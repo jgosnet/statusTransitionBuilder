@@ -51,12 +51,12 @@ export default {
       }
 
       res[stepItem.name] = {
-        status: itemStatuses,
+        statuses: itemStatuses,
         transitions: itemTransitions,
       }
     }
     let resString = "STATUS_TRANSITIONS = " + JSON.stringify(res, null, 2)
-      .replaceAll('"!!', '(').replaceAll('!!"', ')')
+      .replaceAll('"!!', '("').replaceAll('!!"', '")')
       .replaceAll('true', 'True').replaceAll('false', 'False');
     return resString
   },
