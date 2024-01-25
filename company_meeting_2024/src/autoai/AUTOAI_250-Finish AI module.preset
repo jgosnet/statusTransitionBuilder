@@ -1,0 +1,7 @@
+{
+  "Eval2Package": "rsl://demo2023_packages/new-package_0_27.zip",
+  "PresetName": "AUTOAI_250-Finish Azure AI",
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}

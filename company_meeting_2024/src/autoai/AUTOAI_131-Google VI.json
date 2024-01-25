@@ -1,0 +1,13 @@
+{
+  "operation": "annotate_video",
+  "arguments": {
+    "features": [
+      "EXPLICIT_CONTENT_DETECTION",
+      "LABEL_DETECTION"
+    ]
+  },
+  "providerArguments": {
+    "labelDetectionMinConfidence": 90,
+    "explicitContentDetectionMinConfidence": "POSSIBLE"
+  }
+}

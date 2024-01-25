@@ -1,0 +1,6 @@
+{
+  "PresetName": "AUTOAI_azure_vi_config",
+  "ProviderDataFilename": "AUTOAI_azure_vi_config.py",
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}

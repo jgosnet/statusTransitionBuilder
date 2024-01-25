@@ -1,0 +1,22 @@
+  {
+    "tasks": [
+      {
+        "operation": "copy",
+        "source": {
+          "optional": false,
+          "inventory": {
+            "labels": [
+              "SdviProxy"
+            ]
+          }
+        },
+        "destination": {
+          "name": " proxy/<asset>/<asset>_proxy_gcp.mp4",
+          "inventory": {
+            "storage": "gcp_demo2023",
+            "newLabel": "SdviProxy_gcp"
+          }
+        }
+      }
+    ]
+  }

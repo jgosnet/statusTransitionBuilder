@@ -1,0 +1,21 @@
+{
+  "PresetName": "Video Indexer Video Only",
+  "inputSpec": {
+    "input": {
+      "label": "SdviProxy"
+    }
+  },
+  "outputSpec": {
+    "raw": {
+      "label": "VidIndexVideo_Raw",
+      "location": "demo2023_artifacts",
+      "name": "<houseName>_VidIndexVideo_Raw"
+    }
+  },
+  "providerInfo": {
+    "accountInfoSecretName": "/rallyDemo/azureVi"
+  },
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "VideoIndexer"
+}

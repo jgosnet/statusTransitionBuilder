@@ -1,0 +1,18 @@
+# UI Proxy - Output Video + 1 Stereo Track
+# Author: Josh Hicks
+
+{% if DYNAMIC_PRESET_DATA['audioConfig'] == '1-Track-MONO' %}
+ffmpeg -i $inputSpec:myInput -b:v 3000k -codec:v libx264  -profile:v baseline -preset veryfast -pix_fmt yuv420p -codec:a aac -map 0:v:0 -filter_complex "[0:a:0][0:a:0]amerge,channelmap=channel_layout=stereo[st]" -map "[st]" $jobOutputFolder:myOutput.mp4
+
+{% elif DYNAMIC_PRESET_DATA['audioConfig'] == '2-Track-MONO' %}
+ffmpeg -i $inputSpec:myInput -b:v 3000k -codec:v libx264  -profile:v baseline -preset veryfast -pix_fmt yuv420p -codec:a aac -map 0:v:0 -filter_complex "[0:a:0][0:a:1]amerge,channelmap=channel_layout=stereo[st]" -map "[st]" $jobOutputFolder:myOutput.mp4
+
+{% elif DYNAMIC_PRESET_DATA['audioConfig'] == 'STEREO' %}
+ffmpeg -i $inputSpec:myInput -b:v 3000k -codec:v libx264  -profile:v baseline -preset veryfast -pix_fmt yuv420p -codec:a aac -map 0:v:0 -map 0:a:0 $jobOutputFolder:myOutput.mp4
+
+{% else %}
+ffmpeg -i $inputSpec:myInput -b:v 3000k -codec:v libx264  -profile:v baseline -preset veryfast -pix_fmt yuv420p -codec:a aac -map 0:v:0 -map 0:a:0 $jobOutputFolder:myOutput.mp4
+
+{% endif %}
+
+ffmpeg -i $inputSpec:myInput -vf thumbnail=450,scale=720:-1 -frames:v 1 $jobOutputFolder:thumbnail.jpg

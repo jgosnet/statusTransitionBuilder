@@ -1,0 +1,7 @@
+{
+  "Eval2Package": "rsl://demo2023_packages/new-package_0_27.zip",
+  "PresetName": "AUTOAI_240-Classify Azure VI",
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}

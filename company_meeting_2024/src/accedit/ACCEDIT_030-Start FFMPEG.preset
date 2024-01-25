@@ -1,0 +1,23 @@
+{
+  "PresetName": "ACCEDIT_030-Start FFMPEG",
+  "inputSpec": {
+    "myInput": {
+      "label": "movie"
+    }
+  },
+  "outputSpec": {
+    "myOutput.mp4": {
+      "label": "SdviProxy",
+      "location": "demo2023_proxy",
+      "name": "<assetName>/<assetName>_proxy"
+    },
+    "thumbnail.jpg": {
+      "label": "SdviThumbnail",
+      "location": "demo2023_proxy",
+      "name": "<assetName>/<assetName>_thumbnail"
+    }
+  },
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "ffmpeg"
+}

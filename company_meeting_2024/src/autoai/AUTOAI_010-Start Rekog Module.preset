@@ -1,0 +1,7 @@
+{
+  "Eval2Package": "rsl://demo2023_packages/new-package_0_27.zip",
+  "PresetName": "AUTOAI_010-Start Rekog Module",
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}

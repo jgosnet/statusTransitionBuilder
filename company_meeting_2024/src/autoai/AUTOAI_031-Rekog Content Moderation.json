@@ -1,0 +1,6 @@
+{
+  "operation": "start_content_moderation",
+  "arguments": {
+    "MinConfidence": 60
+  }
+}

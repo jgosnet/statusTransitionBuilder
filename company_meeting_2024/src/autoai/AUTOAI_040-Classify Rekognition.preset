@@ -1,0 +1,7 @@
+{
+  "Eval2Package": "rsl://demo2023_packages/new-package_0_28.zip",
+  "PresetName": "AUTOAI_040-Classify Rekognition",
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}

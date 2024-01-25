@@ -1,0 +1,29 @@
+{
+  "OutputStorageName": "demo2023_artifacts",
+  "PresetName": "AUTOAI_130-Cloudvi",
+  "enableMio": "always",
+  "inputSpec": {
+    "<movie>": {
+      "label": "SdviProxy_gcp"
+    }
+  },
+  "outputSpec": {
+    "raw": {
+      "label": "GoogleVI-Raw",
+      "location": "demo2023_artifacts",
+      "name": "<assetName>/<assetName>_GoogleVI-Functions-Raw"
+    },
+    "txt": {
+      "label": "GoogleVI-Txt",
+      "location": "demo2023_artifacts",
+      "name": "<assetName>/<assetName>_GoogleVI-Functions-Txt"
+    }
+  },
+  "providerConfiguration": {
+    "ParameterStoreKey": "demo/Google/VideoIntelligence",
+    "SecretStoreName": "SDVI Staging AWS SM"
+  },
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "VideoIntelligence"
+}

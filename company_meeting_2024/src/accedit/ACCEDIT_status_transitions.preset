@@ -1,0 +1,6 @@
+{
+  "PresetName": "ACCEDIT_status_transitions",
+  "ProviderDataFilename": "ACCEDIT_status_transitions.py",
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}

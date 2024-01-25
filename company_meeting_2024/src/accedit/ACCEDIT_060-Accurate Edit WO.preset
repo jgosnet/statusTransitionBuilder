@@ -1,0 +1,19 @@
+{
+  "PresetName": "ACCEDIT_060-Accurate Edit WO",
+  "inputSpec": "{{DYNAMIC_PRESET_DATA['accurateEditWorkOrderData']['input_specs'] | tojson}}",
+  "outputSpec": {
+    "avAssetMetadataExport": {
+      "label": "accurate_metadata_export",
+      "location": "demo2023_artifacts",
+      "name": "<assetName>/<assetName>_accurate_metadata_export.json"
+    },
+    "avEdl": {
+      "label": "accurate_edl",
+      "location": "demo2023_artifacts",
+      "name": "<assetName>/<assetName>_accurate_edl.json"
+    }
+  },
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "SdviDashboardWorkOrder"
+}

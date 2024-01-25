@@ -1,0 +1,29 @@
+{
+  "InputFileLabel": "SdviProxy",
+  "OutputStorageName": "demo2023_artifacts",
+  "PresetName": "AUTOAI_030-Rek-celeb",
+  "enableMio": "always",
+  "inputSpec": {
+    "<SdviProxy>": {
+      "label": "SdviProxy"
+    }
+  },
+  "outputSpec": {
+    "raw": {
+      "label": "RekCelebDet-Raw",
+      "location": "demo2023_artifacts"
+    },
+    "txt": {
+      "label": "RekCelebDet-Scrape",
+      "location": "demo2023_artifacts"
+    }
+  },
+  "providerConfiguration": {
+    "RunAsRegion": "us-east-1",
+    "RunAsRoleArn": "arn:aws:iam::676255361897:role/sdvi-rally",
+    "RunAsRoleId": "7d1102e3-84f5-11e6-9bcf-3c15c2c86b26"
+  },
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "Rekognition"
+}

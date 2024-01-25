@@ -1,0 +1,14 @@
+{
+  "OutputStorageName": "demo2023_inprocess",
+  "PresetName": "ACCEDIT_080-AME H264",
+  "inputSpec": "{{DYNAMIC_PRESET_DATA['ameData']['input_specs'] | tojson}}",
+  "outputSpec": {
+    ".*\\.mp4$": {
+      "label": "ACC_Edit_Render",
+      "location": "demo2023_inprocess"
+    }
+  },
+  "ProviderDataFilename": null,
+  "TagNames": [],
+  "ProviderType": "MediaEncoder"
+}

@@ -1,0 +1,6 @@
+{
+  "gateway": {
+    "players": 
+      {{DYNAMIC_PRESET_DATA['accurateEditWorkOrderData']['video_data'] | tojson | replace("\\u003c", "<") | replace("\\u003e", ">")}}
+  }
+}

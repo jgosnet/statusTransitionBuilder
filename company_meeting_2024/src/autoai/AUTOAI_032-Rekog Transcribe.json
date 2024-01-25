@@ -1,0 +1,21 @@
+{
+  "operation": "start_transcription_job",
+  "arguments": {
+    "MediaFormat": "mp4",
+    "LanguageCode": "en-US",
+    "Media": {
+      "MediaFileUri": "<SdviProxy>"
+    },
+    "Settings": {
+      "ShowSpeakerLabels": true,
+      "MaxSpeakerLabels": 3
+    },
+    "Subtitles": {
+      "Formats": [
+        "vtt",
+        "srt"
+      ],
+      "OutputStartIndex": 0
+    }
+  }
+}

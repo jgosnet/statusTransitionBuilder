@@ -1,0 +1,6 @@
+{
+  "PresetName": "AUTOAI_rekognition_config",
+  "ProviderDataFilename": "AUTOAI_rekognition_config.py",
+  "TagNames": [],
+  "ProviderType": "SdviEvalPro"
+}
